@@ -22,14 +22,14 @@ window.onload = async function () {
         }).then(response => response.json());
         var station = await fetch(`https://api.weather.gov/points/${startPos.coords.latitude},${startPos.coords.longitude}/stations`, {
             headers: {
-                'User-Agent': ('podiumbot chrome extension')
+                'User-Agent': ('another chrome weather extension')
             }
         }).then(response => response.json());
         console.log(station.features[0].id)
         var stationurl = `${station.features[0].id}/observations/latest`;
         var stationdata = await fetch(stationurl, {
             headers: {
-                'User-Agent': ('podiumbot chrome extension')
+                'User-Agent': ('another chrome weather extension')
             }
         }).then(response => response.json());
         //console.log(stationdata.properties.temperature.value)
@@ -40,12 +40,12 @@ window.onload = async function () {
         console.log(response);
         var weather = await fetch(response.properties.forecast, {
             headers: {
-                'User-Agent': ('podiumbot chrome extension')
+                'User-Agent': ('another chrome weather extension')
             }
         }).then(response => response.json());
         var hourly = await fetch(response.properties.forecastHourly, {
             headers: {
-                'User-Agent': ('podiumbot chrome extension')
+                'User-Agent': ('another chrome weather extension')
             }
         }).then(response => response.json());
         console.log(hourly);
