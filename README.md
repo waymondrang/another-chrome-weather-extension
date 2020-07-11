@@ -1,5 +1,4 @@
 # another chrome weather extension
-by raymond wang
 
 ## about
 
