@@ -13,7 +13,7 @@ accordingly, the extension makes an initial request using the browser's location
 read more about gridpoints and the NWS api [here](https://weather-gov.github.io/api/gridpoints).
 
 ## installation
-there are no pre
+there are no prerequisites or dependencies for this extension!
 
  1. clone or download the github repository
  2. move contents into a new folder
