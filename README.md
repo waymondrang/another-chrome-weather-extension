@@ -2,7 +2,7 @@
 
 ## about
 
-**acwe** is a chrome extension that will override the default chrome "new tab" page. the **acwe**'s minimalistic "new tab" page features the essentials—a google search bar, and handy weather information.
+**acwe** is a chrome extension that will override the default chrome "new tab" page into a minimalistic page features the essentials—a google search bar and handy weather information.
 
 ## weather data
 
