@@ -1,7 +1,7 @@
-window.onload = async function () {
+window.onload = function () {
 
     // retrieve saved weather data before sending requests
-    await chrome.storage.sync.get(['city', 'state', 'temp-current-value', 'temp-high-value', 'temp-unit', 'period', 'weather-description', 'wind-speed', 'wind-direction', 'hourly-data'], function (result) {
+    chrome.storage.sync.get(['city', 'state', 'temp-current-value', 'temp-high-value', 'temp-unit', 'period', 'weather-description', 'wind-speed', 'wind-direction', 'hourly-data'], function (result) {
         document.getElementById("city").innerText = result['city'] || ''
         document.getElementById("temp-current-value").innerText = result['temp-current-value'] || ''
         document.getElementById("wind-direction").innerText = result['wind-direction'] || ''
@@ -14,40 +14,26 @@ window.onload = async function () {
     var startPos;
 
     var geoSuccess = async function (position) {
+        Request.cache = 'no-store'
+        var options = {
+            method: 'GET',
+            cache: 'no-store'
+        }
         startPos = position;
-        var response = await fetch(`https://api.weather.gov/points/${startPos.coords.latitude},${startPos.coords.longitude}`, {
-            headers: {
-                'User-Agent': ('podiumbot chrome extension')
-            }
-        }).then(response => response.json());
-        var station = await fetch(`https://api.weather.gov/points/${startPos.coords.latitude},${startPos.coords.longitude}/stations`, {
-            headers: {
-                'User-Agent': ('another chrome weather extension')
-            }
-        }).then(response => response.json());
+        var response = await fetch(`https://api.weather.gov/points/${startPos.coords.latitude},${startPos.coords.longitude}`, options).then(response => response.json());
+        var station = await fetch(`https://api.weather.gov/points/${startPos.coords.latitude},${startPos.coords.longitude}/stations`, options).then(response => response.json());
         console.log(station.features[0].id)
         var stationurl = `${station.features[0].id}/observations/latest`;
-        var stationdata = await fetch(stationurl, {
-            headers: {
-                'User-Agent': ('another chrome weather extension')
-            }
-        }).then(response => response.json());
+        console.log(stationurl)
+        var stationdata = await fetch(stationurl, options).then(response => response.json());
         //console.log(stationdata.properties.temperature.value)
         var tempF = Math.round(((stationdata.properties.temperature.value / 5) * 9 + 32) * 10) / 10;
         document.getElementById("temp-current-value").innerText = tempF;
         document.getElementById("city").innerText = response.properties.relativeLocation.properties.city;
         //document.getElementById("state").innerText = response.properties.relativeLocation.properties.state;
         console.log(response);
-        var weather = await fetch(response.properties.forecast, {
-            headers: {
-                'User-Agent': ('another chrome weather extension')
-            }
-        }).then(response => response.json());
-        var hourly = await fetch(response.properties.forecastHourly, {
-            headers: {
-                'User-Agent': ('another chrome weather extension')
-            }
-        }).then(response => response.json());
+        var weather = await fetch(response.properties.forecast, options).then(response => response.json());
+        var hourly = await fetch(response.properties.forecastHourly, options).then(response => response.json());
         console.log(hourly);
         console.log(weather);
         var hourlyinner = '';
@@ -67,7 +53,7 @@ window.onload = async function () {
         chrome.storage.sync.set({
             city: response.properties.relativeLocation.properties.city,
             state: response.properties.relativeLocation.properties.state,
-            "wind-speed": weather.properties.periods[0].windSpeed,
+            'wind-speed': weather.properties.periods[0].windSpeed,
             'wind-direction': weather.properties.periods[0].windDirection,
             'temp-current-value': tempF,
             'temp-high-value': weather.properties.periods[0].temperature,
