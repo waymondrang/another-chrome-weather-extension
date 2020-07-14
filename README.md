@@ -1,8 +1,6 @@
 # another chrome weather extension
 
-## about
-
-**acwe** is a chrome extension that will override the default chrome "new tab" page into a minimalistic page features the essentials—a google search bar and handy weather information.
+**acwe** is a chrome extension that will override the default chrome "new tab" page into a minimalistic page that features the essentials—a google search bar and handy weather information.
 
 ## weather data
 
@@ -31,6 +29,10 @@ read more about gridpoints and the NWS api [here](https://weather-gov.github.io/
 ## known bugs
 
  - the api sometimes is inconsistent in its responses, displaying the incorrect hourly timeline and current temperature.
+
+ ## screenshots
+
+ ![zoomed in](https://github.com/waymondrang/another-chrome-weather-extension/blob/master/zoom.png?raw=true)
 
 ## license
 [MIT](https://choosealicense.com/licenses/mit/)
