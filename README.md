@@ -32,7 +32,7 @@ read more about gridpoints and the NWS api [here](https://weather-gov.github.io/
 
  ## screenshots
 
- ![zoomed in](https://github.com/waymondrang/another-chrome-weather-extension/blob/master/zoom.png?raw=true)
+ ![zoomed in](https://github.com/waymondrang/another-chrome-weather-extension/blob/master/screenshots/zoom.png?raw=true)
 
 ## license
 [MIT](https://choosealicense.com/licenses/mit/)
